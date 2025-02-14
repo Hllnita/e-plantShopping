@@ -6,7 +6,7 @@ import './CartItem.css';
 const CartItem = ({ onContinueShopping }) => {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart.items);
-
+    const totalItems = useSelector(state => state.cart.items.reduce((total, item) => total + item.quantity, 0));
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     // total =0;
@@ -22,7 +22,7 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleCheckoutShopping = (e) => {
-    alert('Functionality to be added for future reference');
+    alert('Coming soon...');
   };
 
   const handleDecrement = (item) => {
@@ -53,7 +53,7 @@ const CartItem = ({ onContinueShopping }) => {
 
   return (
     <div className="cart-container">
-      <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
+      <h2 style={{ color: 'black' }}><span>Total Cart Items: {totalItems}<br/>Total Cart Amount: ${calculateTotalAmount()}</span></h2>
       <div>
         {cart.map(item => (
           <div className="cart-item" key={item.name}>
